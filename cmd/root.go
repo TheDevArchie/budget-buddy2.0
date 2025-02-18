@@ -30,12 +30,7 @@ func Execute() {
 
 //TODO: Calculate remaining total amount of money needed for each expense category
 //TODO: Calculate leftover money after expenses with income .... Add args for paycheck amount and for timeframe of paycheck
-//TODO: Add arg for which user to apply budget to
-    //Can include the user in the filename. OR The files are stored in each 'User' directory
-    //inside data directory
 //TODO: Once there is 'data/<user>/', alter expense filename into 'data/<user>/expenses/...txt.
 //TODO: Then there can be an income folder as well
     //Then modify add command so that a user can add expense/income with needed args
 //TODO: List out expense files of user... force a user arg
-//TODO: Add setup command that is required initially
-    //TODO: 'Add user' arg to setup command
