@@ -28,13 +28,6 @@ func Execute() {
     }
 }
 
-// func Setup(user string) string{
-//     userDataFilesDirectory := fmt.Sprintf("%s/%s", utils.DataFilesDirectory, user)
-//     utils.CreateDataDirectory(userDataFilesDirectory)
-//     userFile := utils.CreateCurrentMonthFile(userDataFilesDirectory)
-//
-//     return userFile
-// }
 //TODO: Calculate remaining total amount of money needed for each expense category
 //TODO: Calculate leftover money after expenses with income .... Add args for paycheck amount and for timeframe of paycheck
 //TODO: Add arg for which user to apply budget to
