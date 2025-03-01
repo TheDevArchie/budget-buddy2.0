@@ -43,12 +43,17 @@ func RunCmd(name string) {
 }
 
 func PrintExpenses(expenses []models.Expense) {
+    var total float64 = 0
+
     fmt.Println("***** EXPENSES *****")
     fmt.Println("--------------------")
 
     for i := range expenses {
-        fmt.Printf("Expense: %s | Amount: %.2f \n", expenses[i].Name, expenses[i].Amount)
+        fmt.Printf("%s | Amount: %.2f \n", expenses[i].Name, expenses[i].Amount)
+        total += expenses[i].Amount
     }
+
+    fmt.Printf("\nTotal Amount: %.2f", total)
 }
 
 //Retrieve the appropriate file name

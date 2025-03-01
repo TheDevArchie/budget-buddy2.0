@@ -46,3 +46,5 @@ func addExpense(name string, amount float64, fileName string, expenses models.Ex
     expenses.AddExpense(name, amount)
     expenses.WriteToFile(fileName)
 }
+
+//TODO: Alter where if currentMonthFile doesn't exist, then a new one is created beforehand

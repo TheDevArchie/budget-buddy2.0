@@ -28,7 +28,7 @@ func Execute() {
     }
 }
 
-//TODO: Calculate remaining total amount of money needed for each expense category
+//TODO: Calculate amount needed for income based on expenses
 //TODO: Calculate leftover money after expenses with income .... Add args for paycheck amount and for timeframe of paycheck
 //TODO: Once there is 'data/<user>/', alter expense filename into 'data/<user>/expenses/...txt.
 //TODO: Then there can be an income folder as well
