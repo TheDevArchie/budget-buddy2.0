@@ -71,7 +71,6 @@ func GetCurrentMonthFile() string {
 func GetExpenseFileWithMonthYear(dir string, month int, year int) (string, error) {
     fileName := fmt.Sprintf(ExpenseDataFileTemplate, year, month)
     fullFilePath := fmt.Sprintf("%s/%s", dir, fileName)
-    fmt.Println(fullFilePath)
 
     if !DataFileExists(fullFilePath) {
         return "", fmt.Errorf("file %s does not exist", fileName)
