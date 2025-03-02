@@ -12,7 +12,7 @@ import (
 )
 
 var DataFilesDirectory string = "data"
-var ExpenseDataFileTemplate string = "%4d_%d_expenses.txt"
+var ExpenseDataFileTemplate string = "%4d_%02d_expenses.txt"
 
 func GatherExpensesFromFile(fileName string) (models.Expenses, error){
     data, err := os.ReadFile(fileName) // Should we handle error?
@@ -68,14 +68,16 @@ func GetCurrentMonthFile() string {
     return fileName
 }
 
-func GetExpenseFileWithMonthYear(month int, year int) (string, error) {
+func GetExpenseFileWithMonthYear(dir string, month int, year int) (string, error) {
     fileName := fmt.Sprintf(ExpenseDataFileTemplate, year, month)
+    fullFilePath := fmt.Sprintf("%s/%s", dir, fileName)
+    fmt.Println(fullFilePath)
 
-    if !DataFileExists(fileName) {
+    if !DataFileExists(fullFilePath) {
         return "", fmt.Errorf("file %s does not exist", fileName)
     }
 
-    return fileName, nil
+    return fullFilePath, nil
 }
 
 func CreateCurrentMonthFile(directory string) string{
