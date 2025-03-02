@@ -14,13 +14,21 @@ var listCmd = &cobra.Command{
     Short: "List items",
     Run: func(cmd *cobra.Command, args []string) {
         user, _ := cmd.Flags().GetString("user")
+        currentMonth, _ := cmd.Flags().GetInt("month")
+        currentYear, _ := cmd.Flags().GetInt("year")
+
         userDirectory := fmt.Sprintf("%s/%s", utils.DataFilesDirectory, user)
-        fmt.Println(userDirectory)
-        fileName := fmt.Sprintf("%s/%s", userDirectory, utils.GetCurrentMonthFile())
+
+        fileName, err := utils.GetExpenseFileWithMonthYear(userDirectory,currentMonth, currentYear)
+
+        if err != nil {
+            panic("No Filename found")
+        }
 
         if !utils.DataFileExists(userDirectory) || !utils.DataFileExists(fileName) {
             panic("Data directory doesn't exist! Pls run the \"setup\" command first to set up user data")
         }
+
         expenses, _ := utils.GatherExpensesFromFile(fileName)
 
         utils.PrintExpenses(expenses.GetExpenseList())
@@ -32,8 +40,6 @@ func init() {
     currentDate := time.Now()
     currentMonth := int(currentDate.Month())
     currentYear := int(currentDate.Year())
-
-    fmt.Println(currentYear)
 
     listCmd.Flags().StringP("user", "u", "", "User associated with expenses")
     listCmd.Flags().IntP("month", "m", currentMonth, "Which month of expenses to view")
