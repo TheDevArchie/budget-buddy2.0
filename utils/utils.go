@@ -12,6 +12,7 @@ import (
 )
 
 var DataFilesDirectory string = "data"
+var ExpenseDataFileTemplate string = "%4d_%d_expenses.txt"
 
 func GatherExpensesFromFile(fileName string) (models.Expenses, error){
     data, err := os.ReadFile(fileName) // Should we handle error?
@@ -63,8 +64,18 @@ func GetCurrentMonthFile() string {
     month := currentDate.Month()
     year := currentDate.Year()
 
-    fileName := fmt.Sprintf("%4d_%02d_expenses.txt", year, month)
+    fileName := fmt.Sprintf(ExpenseDataFileTemplate, year, month)
     return fileName
+}
+
+func GetExpenseFileWithMonthYear(month int, year int) (string, error) {
+    fileName := fmt.Sprintf(ExpenseDataFileTemplate, year, month)
+
+    if !DataFileExists(fileName) {
+        return "", fmt.Errorf("file %s does not exist", fileName)
+    }
+
+    return fileName, nil
 }
 
 func CreateCurrentMonthFile(directory string) string{
